@@ -46,4 +46,12 @@ public class MealService {
 		}
 		return meal;	
 	}
+
+	public Meal editMeal (UUID id) {
+		return null;
+	}
+
+	public Meal editComment() {
+		return null;
+	}
 }
