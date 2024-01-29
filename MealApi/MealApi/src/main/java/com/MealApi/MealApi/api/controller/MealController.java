@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,5 +38,10 @@ public class MealController {
 	public Meal addMeal(@RequestBody Meal meal) {
 		System.out.println("new meal: " + meal);
 		return mealService.addMeal(meal);
+	}
+
+	@DeleteMapping ("/meal/delete")
+	public Meal removeMeal(@RequestParam UUID id) {
+		return mealService.removeMeal(id);
 	}
 }

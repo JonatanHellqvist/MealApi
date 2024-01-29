@@ -38,4 +38,12 @@ public class MealService {
 		mealList.add(meal);
 		return meal;
 	}
+
+	public Meal removeMeal(UUID id) {
+		Meal meal = getMeal(id);
+		if (meal != null) {
+			mealList.remove(meal);
+		}
+		return meal;	
+	}
 }
