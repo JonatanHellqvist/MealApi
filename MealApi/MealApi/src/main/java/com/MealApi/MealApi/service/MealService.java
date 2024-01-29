@@ -31,11 +31,11 @@ public class MealService {
 	}
 
 	public List<Meal> getMeals() {
-		return null;
+		return mealList;
 	}
 
 	public Meal addMeal(Meal meal) {
 		mealList.add(meal);
-		return null;
+		return meal;
 	}
 }
