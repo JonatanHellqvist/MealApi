@@ -2,46 +2,47 @@ package com.MealApi.MealApi.api.model;
 
 import java.util.UUID;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Meal {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	private String mealName;
+	private String name;
 	private String comment;
 
+// public Meal(String name,String comment) {
+// 	id = UUID.randomUUID();
+// 	this.name = name;
+// 	this.comment = comment;
+// }
 
-public Meal(String mealName,String comment) {
-	id = UUID.randomUUID();
-	this.mealName = mealName;
-	this.comment = comment;
-}
+	public UUID getId() {
+		return id;
+	}
 
+	public void setId(UUID id) {
+		this.id = id;
+	}
 
-public UUID getId() {
-	return id;
-}
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
 
-public void setId(UUID id) {
-	this.id = id;
-}
+	public String getComment() {
+		return comment;
+	}
 
-
-public String getMealName() {
-	return mealName;
-}
-
-
-public void setMealName(String mealName) {
-	this.mealName = mealName;
-}
-
-
-public String getComment() {
-	return comment;
-}
-
-
-public void setComment(String comment) {
-	this.comment = comment;
-}
-
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 }
