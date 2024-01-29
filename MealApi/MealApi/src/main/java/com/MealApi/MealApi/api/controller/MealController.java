@@ -1,6 +1,5 @@
 package com.MealApi.MealApi.api.controller;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,38 +11,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.MealApi.MealApi.api.MealRepository;
 import com.MealApi.MealApi.api.model.Meal;
-import com.MealApi.MealApi.service.MealService;
+
 
 @RestController
 public class MealController {
 	
-	private MealService mealService;
+	// private MealService mealService;
+	
+	// @Autowired
+	// public MealController(MealService mealService) {
+	// 	this.mealService = mealService;
+	// }
 
 	@Autowired
-	public MealController(MealService mealService) {
-		this.mealService = mealService;
-	}
+	private MealRepository mealRepository;
 
 	@GetMapping("/meal")
 	public Meal getMeal(@RequestParam UUID id) {
-		return mealService.getMeal(id);
+		return mealRepository.findById(id).orElse(null);
 	}
 
 	@GetMapping("/meals")
-	public List<Meal> getMeals() {
-		return mealService.getMeals();
+	public Iterable<Meal> getMeals() {
+		return mealRepository.findAll();
 	}
 
-	@PostMapping ("/meal")
-	public Meal addMeal(@RequestBody Meal meal) {
-		System.out.println("new meal: " + meal);
-		return mealService.addMeal(meal);
+	@PostMapping("/meal")
+		public String addMeal(@RequestBody Meal meal) {
+		mealRepository.save(meal);
+		return "redirect:/";
 	}
 
-	@DeleteMapping ("/meal/delete")
-	public Meal removeMeal(@RequestParam UUID id) {
-		return mealService.removeMeal(id);
+	@DeleteMapping ("/meal")
+	public String removeMeal(@RequestParam UUID id) {
+		mealRepository.deleteById(id);
+		return "redirect:/";
 	}
 
 	@PatchMapping ("/meal/edit")
