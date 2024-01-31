@@ -2,7 +2,10 @@ package com.MealApi.MealApi.api.controller;
 
 import java.util.UUID;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -14,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.MealApi.MealApi.api.MealRepository;
 import com.MealApi.MealApi.api.model.Meal;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 public class MealController {
 	
@@ -39,10 +42,33 @@ public class MealController {
 	}
 
 	@PostMapping("/meal")
-		public String addMeal(@RequestBody Meal meal) {
+		public ResponseEntity<Void>addMeal(@RequestBody Meal meal) {
 		mealRepository.save(meal);
-		return "redirect:/";
+		return ResponseEntity.ok().build();
 	}
+
+	//funkar att spara men js fuckar ur med index
+// 	@PostMapping("/meal")
+// 	public String addMeal(@RequestBody Meal meal) {
+// 	mealRepository.save(meal);
+// 	return "index";
+// }
+
+
+	// @PostMapping("/meal")
+	// 	public String addMeal(@RequestParam int idMeal, @RequestParam String strMeal, @RequestParam String comment) {
+
+	// 	Meal meal = new Meal();
+		
+	// 	meal.setId(idMeal);
+	// 	meal.setName(strMeal);
+	// 	meal.setComment("test");
+
+	// 	mealRepository.save(meal);
+
+	// 	return "redirect:/";
+	// 	}
+
 
 	@DeleteMapping ("/meal")
 	public String removeMeal(@RequestParam UUID id) {

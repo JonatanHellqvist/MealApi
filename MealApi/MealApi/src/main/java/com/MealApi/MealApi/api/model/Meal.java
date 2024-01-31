@@ -11,8 +11,8 @@ import jakarta.persistence.Id;
 public class Meal {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
+	// @GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 	private String name;
 	private String comment;
 
@@ -22,11 +22,11 @@ public class Meal {
 // 	this.comment = comment;
 // }
 
-	public UUID getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
