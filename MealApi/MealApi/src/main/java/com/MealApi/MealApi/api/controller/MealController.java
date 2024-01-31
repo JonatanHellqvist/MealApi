@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -88,7 +89,8 @@ public class MealController {
 	}
 
 	@PatchMapping ("/meal/editcomment")
-	public Meal editMealComment () {
-		return null;
+	public ResponseEntity<Void> editComment(@RequestParam int id, @RequestParam String comment) {
+		mealRepository.editComment(comment, id);
+		return ResponseEntity.ok().build();
 	}
 }
