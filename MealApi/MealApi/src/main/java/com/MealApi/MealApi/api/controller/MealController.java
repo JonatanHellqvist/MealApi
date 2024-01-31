@@ -32,7 +32,7 @@ public class MealController {
 	private MealRepository mealRepository;
 
 	@GetMapping("/meal")
-	public Meal getMeal(@RequestParam UUID id) {
+	public Meal getMeal(@RequestParam int id) {
 		return mealRepository.findById(id).orElse(null);
 	}
 
@@ -71,10 +71,16 @@ public class MealController {
 
 
 	@DeleteMapping ("/meal")
-	public String removeMeal(@RequestParam UUID id) {
+	public String removeMeal(@RequestParam int id) {
 		mealRepository.deleteById(id);
 		return "redirect:/";
 	}
+	
+	// @DeleteMapping ("/meal")
+	// public ResponseEntity <Void> removeMeal(@RequestParam int id) {
+	// 	mealRepository.deleteById(id);
+	// 	return ResponseEntity.ok().build();
+	// }
 
 	@PatchMapping ("/meal/edit")
 	public Meal editMeal (@RequestParam UUID id) {
